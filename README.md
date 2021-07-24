@@ -4,6 +4,6 @@ Download the nec.py file and enjoy it.
 
 Descriptions are in the file.
 
-Here is the link. If you like, please like the video in the link below.
+Here is the contest link. If you like the project, please like the video in the link below.
 
 https://www.computervision.zone/dsc/?contest=video-detail&video_id=96567
