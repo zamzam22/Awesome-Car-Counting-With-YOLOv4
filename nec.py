@@ -5,6 +5,7 @@ import math
 
 zz=25
 
+# Function from pysource.com------------------------------------------------------------
 class EuclideanDistTracker:
     def __init__(self):
         # Store the center positions of the objects
@@ -18,13 +19,10 @@ class EuclideanDistTracker:
         # Objects boxes and ids
         objects_bbs_ids = []
 
-        # Get center point of new object
         for rect in objects_rect:
             x, y, w, h, idd = rect
             cx = (x + x + w) // 2
             cy = (y + y + h) // 2
-
-            # Find out if that object was detected already
            
             same_object_detected = False
             for id, pt in self.center_points.items():
@@ -43,7 +41,6 @@ class EuclideanDistTracker:
                     objects_bbs_ids.append([x, y, w, h, self.id_count])
                     self.id_count += 1
 
-        # Clean the dictionary by center points to remove IDS not used anymore
         new_center_points = {}
         for obj_bb_id in objects_bbs_ids:
             _, _, _, _, object_id = obj_bb_id
@@ -54,7 +51,7 @@ class EuclideanDistTracker:
         self.center_points = new_center_points.copy()
         return objects_bbs_ids
     
-    #Function from cvzone
+    # Function from computervision.zone -------------------------------------------------------------
     def fancyDraw(self, img, bbox, l=zz, t=3, rt= 1):
         x, y, w, h, id = bbox
         
@@ -82,7 +79,7 @@ Toplam_filtered =[]
 # Create tracker object
 tracker = EuclideanDistTracker()
 
-# Load Yolo
+# Load Yolo-Tiny ----------------------------------------------------------------------------------
 net = cv.dnn.readNet("yolov4-tiny_best.weights", "yolov4-tiny.cfg")
 
 net.setPreferableBackend(cv.dnn.DNN_BACKEND_CUDA)
@@ -96,8 +93,8 @@ with open("obj.names", "r") as f:
 layer_names = net.getLayerNames()
 output_layers = [layer_names[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 
-# Loading video
-cap = cv.VideoCapture("test2.mp4")
+# Loading video ------------------------------------------------------------------------
+cap = cv.VideoCapture("test.mp4")
 cap.set(3, 1280) # set video widht
 cap.set(4, 720) # set video height
 
@@ -107,7 +104,7 @@ frame_id = 0
 toplam = 0 
 say=0
 
-#Start
+# Start --------------------------------------------------------------------------------------
 while True:
     # Get frame
     _, frame = cap.read()
@@ -160,7 +157,7 @@ while True:
     boxes_ids = tracker.update(boxes)
 
     
-    #Filtering some 
+    # Filtering some issues -----------------------------------------------------------------------------
     eklenecekler = []
     filtered =[]
    
@@ -183,7 +180,7 @@ while True:
           
     Toplam_filtered = [*Toplam_filtered, *filtered]
 
-    #total car count
+    # Total car count -------------------------------------------------------------------------------------------------------
     try:
         _,_,_,_,value = max(filtered, key=lambda item: item[4])
         if value > toplam:
@@ -192,14 +189,13 @@ while True:
         pass
      
   
-    #Some texts
+    # Some texts -------------------------------------------------------------------------------------------------------------
     cv.putText(frame, "NAZIM CORAKLI", (600, 70), font, 1, (0, 0, 255), 2)
     cv.putText(frame, str(toplam), (1150, 70), font, 2, (0, 0, 255), 2)
     
-    #Final
+    # Final ------------------------------------------------------------------------------------------------------------------
     cv.imshow("Awesome Car Counting", frame)
     
-    # Press 'ESC' for exiting video
     k = cv.waitKey(1) & 0xff 
     if k == 27:
         break
