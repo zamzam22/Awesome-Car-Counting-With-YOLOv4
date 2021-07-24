@@ -1,5 +1,9 @@
-# Awesome Car Counting With YOLOv4 Tiny
+# Awesome Car Counting With YOLOv4 Tiny for CVZONE Contest
 
 Download the nec.py file and enjoy it.
 
 Descriptions are in the file.
+
+Here is the link. If you like, please like the video in the link below.
+
+https://www.computervision.zone/dsc/?contest=video-detail&video_id=96567
