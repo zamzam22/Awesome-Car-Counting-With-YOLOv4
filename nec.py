@@ -183,11 +183,6 @@ while True:
           
     Toplam_filtered = [*Toplam_filtered, *filtered]
 
-    # For fps
-    elapsed_time = time.time() - starting_time
-    fps = frame_id / elapsed_time
-    
-    
     #total car count
     try:
         _,_,_,_,value = max(filtered, key=lambda item: item[4])
@@ -198,7 +193,6 @@ while True:
      
   
     #Some texts
-    #cv.putText(frame, "FPS: " + str(round(fps, 2)), (5, 105), font, 1, (0, 0, 255), 2)
     cv.putText(frame, "NAZIM CORAKLI", (600, 70), font, 1, (0, 0, 255), 2)
     cv.putText(frame, str(toplam), (1150, 70), font, 2, (0, 0, 255), 2)
     
