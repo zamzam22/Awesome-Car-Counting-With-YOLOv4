@@ -1,4 +1,6 @@
-# Awesome Car Counting With YOLOv4 Tiny for CVZONE Contest
+# Awesome Car Counting With YOLOv4 Tiny
+
+This is for CVZONE Contest.
 
 Download the nec.py file and enjoy it.
 
